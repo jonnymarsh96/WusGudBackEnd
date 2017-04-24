@@ -18,3 +18,4 @@ Route::get('getArticles', 'ArticlesController@index');
 Route::post('updateArticle/{id}', 'ArticlesController@update');
 Route::get('showArticle/{id}', 'ArticlesController@show');
 Route::post('deleteArticle/{id}', 'ArticlesController@destroy');
+Route::post('signUp', 'UsersController@signUp');
