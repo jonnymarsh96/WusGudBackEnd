@@ -8,6 +8,8 @@ use App\User;
 use Response;
 use Purifier;
 use Hash;
+use JWTAuth;
+
 
 class UsersController extends Controller
 {
@@ -40,4 +42,27 @@ class UsersController extends Controller
     return Response::json(['success' => 'Thanks for joining us ' .$request->input('name')]);
   }
 
+
+
+  public function signIn(Request $request)
+  {
+    $rules = [
+      'email' => 'required'
+      'password' => 'required'
+    ];
+    $validator = Validator::make(Purifier::clean($request->all()), $rules)
+
+    if($validator->fails())
+    {
+      return Response::json(['error' => "Sorry you've mispelled you email/password."]);
+    }
+    $email=$request->input('email');
+    $password=$request->input('password');
+    $cred=compact('email', 'password', ['email', 'password']);
+
+    $token=JWTAuth::attempt($cred);
+    return Response::json(compact('token'));
+
+
+  }
 }
