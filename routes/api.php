@@ -19,4 +19,5 @@ Route::post('updateArticle/{id}', 'ArticlesController@update');
 Route::get('showArticle/{id}', 'ArticlesController@show');
 Route::post('deleteArticle/{id}', 'ArticlesController@destroy');
 Route::post('signUp', 'UsersController@signUp');
-Route::post('singIn', 'UsersController@signIn');
+Route::post('signIn', 'UsersController@signIn');
+Route::any('{path?}', 'UsersController@getIndex')->where('path', '.+');

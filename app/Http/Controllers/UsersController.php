@@ -9,7 +9,7 @@ use Response;
 use Purifier;
 use Hash;
 use JWTAuth;
-
+use File;
 
 class UsersController extends Controller
 {
@@ -64,5 +64,9 @@ class UsersController extends Controller
     return Response::json(compact('token'));
 
 
+  }
+  public function getIndex()
+  {
+    return File::get('index.html');
   }
 }
